@@ -1,4 +1,4 @@
-// server.js (Actualizado para Railway)
+// server.js (Actualizado para Railway con correcciones)
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -9,18 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
-const { Sequelize } = require('sequelize');
-
-// Configuración de Sequelize para Railway
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect: 'postgres',
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
-  }
-});
+const { sequelize, User } = require('./models'); // Se importa correctamente User
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -55,8 +44,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, passwor
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) return done(null, false, { message: 'Correo no registrado' });
-    const valid = await user.validPassword(password);
-    if (!valid) return done(null, false, { message: 'Contraseña incorrecta' });
+    if (!user.validPassword(password)) return done(null, false, { message: 'Contraseña incorrecta' });
     return done(null, user);
   } catch (err) {
     return done(err);
@@ -97,10 +85,7 @@ app.use('/documents', documentsRoutes);
 // Ruta raíz actualizada
 app.get('/', (req, res) => {
   if (req.isAuthenticated()) {
-    if (req.user.role === 'admin') {
-      return res.redirect('/admin');
-    }
-    return res.redirect('/dashboard');
+    return req.user.role === 'admin' ? res.redirect('/admin') : res.redirect('/dashboard');
   }
   res.redirect('/login');
 });
