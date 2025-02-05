@@ -9,7 +9,18 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
-const { sequelize, User } = require('./models');
+const { Sequelize } = require('sequelize');
+
+// Configuración de Sequelize para Railway
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -94,11 +105,18 @@ app.get('/', (req, res) => {
   res.redirect('/login');
 });
 
-// Sincronizar la base de datos y arrancar el servidor
-sequelize.sync()
+// Verificar conexión con la base de datos antes de iniciar el servidor
+sequelize.authenticate()
+  .then(() => {
+    console.log('✅ Conexión a la base de datos establecida correctamente.');
+    return sequelize.sync();
+  })
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Servidor corriendo en el puerto ${PORT}`);
+      console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
     });
   })
-  .catch(err => console.error('Error al sincronizar la base de datos:', err));
+  .catch(err => {
+    console.error('❌ Error al conectar o sincronizar la base de datos:', err);
+    process.exit(1);
+  });
