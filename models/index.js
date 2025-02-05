@@ -1,15 +1,17 @@
 require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 
+const useSSL = process.env.DATABASE_URL.includes("railway.app");
+
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   logging: false,
-  dialectOptions: {
+  dialectOptions: useSSL ? {
     ssl: {
       require: true,
-      rejectUnauthorized: false,
-    },
-  },
+      rejectUnauthorized: false
+    }
+  } : {}
 });
 
 const db = {};
