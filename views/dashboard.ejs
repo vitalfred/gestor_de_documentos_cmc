@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/css/styles.css">
+
+<div class="dashboard-container">
+  <!-- Contenedor de bienvenida (ahora tiene margen superior para no taparse con el header) -->
+  <div class="welcome-container">
+    <h2 class="welcome-title">Bienvenido, <%= currentUser.name %></h2>
+    <p class="company-name">Empresa: <strong><%= company %></strong></p>
+  </div>
+
+  <!-- Contenedor del botón y progreso, alineados correctamente -->
+  <div class="dashboard-content">
+    <div class="button-progress-group">
+      <a href="/documents" class="custom-button">
+        PROGRAMA INTERNO
+      </a>
+      <div class="progress-container">
+        <p>Progreso: <strong><%= uploadedCount %> de <%= totalRequired %> documentos subidos (<%= progress %>%)</strong></p>
+      </div>
+    </div>
+  </div>
+</div>

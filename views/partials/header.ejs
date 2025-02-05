@@ -1,0 +1,29 @@
+<!-- views/partials/header.ejs -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-bg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="<%= currentUser && currentUser.role === 'admin' ? '/admin' : '/dashboard' %>">
+      <img src="/img/logo2.png" alt="Consultores CMC" class="header-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <% if (currentUser) { %>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <% if (currentUser.role === 'admin') { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Panel Admin</a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Panel principal</a>
+            </li>
+          <% } %>
+          <li class="nav-item">
+            <a class="nav-link logout-button" href="/logout">Cerrar Sesión</a>
+          </li>
+        </ul>
+      </div>
+    <% } %>
+  </div>
+</nav>

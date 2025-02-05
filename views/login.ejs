@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="/css/styles.css">
+
+<div class="login-container">
+  <!-- Logo centrado dentro del formulario -->
+  <div class="login-logo-container">
+    <img src="/img/logo.png" alt="Logo" class="login-logo">
+  </div>
+
+  <div class="login-box">
+    <h2 class="text-center login-title">Iniciar Sesión</h2>
+  
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="email" class="login-label">Correo Electrónico:</label>
+        <input type="email" name="email" class="form-control login-input" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="password" class="login-label">Contraseña:</label>
+        <input type="password" name="password" class="form-control login-input" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block login-button">Ingresar</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,255 @@
+/* ========================== */
+/* ESTILOS GENERALES */
+/* ========================== */
+html, body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  height: 100%;
+}
+
+/* ========================== */
+/* NAVBAR (HEADER) */
+/* ========================== */
+.custom-bg {
+  background: linear-gradient(135deg, #005baa 0%, #06183f 100%);
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.header-logo {
+  width: 120px;
+  height: auto;
+}
+
+/* Ajuste para que el contenido no quede tapado por el header */
+.main-container {
+  flex: 1;
+  padding: 40px 10%;
+  margin-top: 100px;
+}
+
+/* ========================== */
+/* FOOTER */
+/* ========================== */
+.custom-footer {
+  background-color: #005baa;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Para páginas con mucho scroll */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+/* ========================== */
+/* PÁGINA ADMINISTRADOR */
+/* ========================== */
+.admin-container {
+  text-align: center;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: calc(100vh - 150px);
+}
+
+.admin-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.admin-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+/* ========================== */
+/* BOTONES GENERALES */
+/* ========================== */
+.custom-button {
+  background-color: #005baa;
+  color: white;
+  font-weight: bold;
+  padding: 15px 40px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.custom-button:hover {
+  background-color: #004a99;
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================== */
+/* DASHBOARD - CORRECCIÓN DE ESPACIADO */
+/* ========================== */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10%;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+}
+
+/* Contenedor de bienvenida alineado a la izquierda */
+.welcome-container {
+  margin-bottom: 25px;
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+  position: absolute;
+  top: 100px;
+  left: 350px;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+.company-name {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Contenedor del botón y progreso */
+.dashboard-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -300px; 
+}
+
+.button-progress-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.progress-container {
+  text-align: center;
+  font-size: 1rem;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+}
+
+/* ========================== */
+/* LOGIN */
+/* ========================== */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 92.5vh;
+  text-align: center;
+  background: #f8f9fa;
+}
+
+/* Contenedor del formulario */
+.login-box {
+  background: white;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15);
+  width: 520px;
+}
+
+/* Logo del login */
+.login-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.login-logo {
+  width: 250px;
+  height: auto;
+}
+
+/* Título */
+.login-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #005baa;
+  margin-bottom: 20px;
+}
+
+/* Etiquetas del formulario */
+.login-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+/* Contenedor de cada campo */
+.form-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* Campos del formulario */
+.login-input {
+  width: 100%;
+  height: 50px;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  display: block;
+}
+
+/* Botón de ingreso */
+.login-button {
+  height: 50px;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  background-color: #005baa;
+  border: none;
+  font-weight: bold;
+  width: 100%;
+}
+
+.login-button:hover {
+  background-color: #004a99;
+}

@@ -1,0 +1,34 @@
+<!-- views/admin-user-details.ejs -->
+<link rel="stylesheet" href="/css/styles.css">
+<h2>Detalle de Progreso para <%= user.name %></h2>
+<p>Progreso: <%= uploadedCount %> de <%= totalRequired %> documentos subidos (<%= progress %>%)</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Documento</th>
+      <th>Estado</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% documentDetails.forEach(doc => { %>
+      <tr>
+        <td><%= doc.documentType %></td>
+        <td>
+          <% if(doc.uploaded) { %>
+            <span class="badge badge-success">Subido</span>
+          <% } else { %>
+            <span class="badge badge-danger">Falta</span>
+          <% } %>
+        </td>
+        <td>
+          <% if(doc.uploaded) { %>
+            <a href="<%= doc.url %>" target="_blank" class="btn btn-sm btn-primary">Ver</a>
+          <% } else { %>
+            <span class="text-muted">Sin enlace</span>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

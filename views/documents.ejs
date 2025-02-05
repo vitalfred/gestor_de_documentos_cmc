@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/css/styles.css">
+
+<div class="main-container">
+  <h2>LISTADO DE DOCUMENTOS PARA PROGRAMA INTERNO</h2>
+  <div class="list-group">
+    <% documents.forEach(function(doc) { %>
+      <div class="list-group-item">
+        <h5><%= doc.documentType %></h5>
+        <% if(doc.url && doc.url.trim() !== '') { %>
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="<%= doc.url %>" target="_blank"><%= doc.url %></a>
+            <button class="btn btn-sm btn-warning btn-edit" data-document="<%= doc.documentType %>">Editar</button>
+          </div>
+          <form action="/documents/save" method="POST" class="mt-2 form-edit" data-document="<%= doc.documentType %>" style="display: none;">
+            <input type="hidden" name="documentType" value="<%= doc.documentType %>">
+            <div class="input-group">
+              <input type="text" name="url" class="form-control" value="<%= doc.url %>" required>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-success">Guardar</button>
+              </div>
+            </div>
+          </form>
+        <% } else { %>
+          <form action="/documents/save" method="POST" class="mt-2">
+            <input type="hidden" name="documentType" value="<%= doc.documentType %>">
+            <div class="input-group">
+              <input type="text" name="url" class="form-control" placeholder="Ingresa la URL del documento" required>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Subir</button>
+              </div>
+            </div>
+          </form>
+        <% } %>
+      </div>
+    <% }) %>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="/css/styles.css">
+<h2>Gestión de Usuarios</h2>
+<div class="card mb-4">
+  <div class="card-header">Crear Nuevo Usuario</div>
+  <div class="card-body">
+    <form action="/admin/users" method="POST">
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label>Nombre</label>
+          <input type="text" name="name" class="form-control" required>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Empresa</label>
+          <input type="text" name="company" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+          <label>Correo</label>
+          <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group col-md-1">
+          <label>Rol</label>
+          <select name="role" class="form-control">
+            <option value="user" selected>User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label>Contraseña</label>
+          <input type="password" name="password" class="form-control" required>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Crear Usuario</button>
+    </form>
+  </div>
+</div>
+
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Empresa</th>
+      <th>Correo</th>
+      <th>Rol</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(function(user) { %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.company %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td>
+          <form action="/admin/users/<%= user.id %>?_method=DELETE" method="POST" style="display:inline-block;">
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar usuario?')">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
